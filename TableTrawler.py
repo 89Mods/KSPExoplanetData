@@ -1,20 +1,20 @@
 #Planet Data:
-#Inclination- 18
-#Eccentricity- 14
-#SMA- 10
+#Inclination- 21
+#Eccentricity- 16
+#SMA- 6
 #LAN- None
 #AOP- None
 #ReferenceBody- 0
 #Name- 2
-#Mass- 22
-#Radius- 27
+#Mass- 26
+#Radius- 32
 
 #Star Data:
 #Name- 0
-#Distance- 43
-#Temperature- 58
-#Mass- 62
-#Radius- 66
+#Distance- 52
+#Temperature- 64
+#Mass- 73
+#Radius- 74
 from random import randint
 from random import random
 import urllib.request
@@ -55,49 +55,50 @@ for line in f.readlines():
     ecc = ""
     mass = ""
     rad = ""
-    if values[18] == "":
+    if values[21] == "":
         continue
     else:
-        inc = values[18]
-    if values[14] == "":
+        inc = float(values[21]) - 90
+    if values[16] == "":
         continue
     else:
-        ecc = values[14]
-    if values[10] == "":
+        ecc = values[16]
+    if values[6] == "":
         continue
     else:
-        sma = float(values[10]) * astronomical_unit
-    if values[22] == "":
+        sma = float(values[6]) * astronomical_unit
+    if values[26] == "":
         continue
     else:
-        mass = float(values[22]) * jupiter_mass
-    if values[27] == "":
+        mass = float(values[26]) * jupiter_mass
+    if values[32] == "":
         continue
     else:
-        rad = float(values[22]) * jupiter_radius
+        rad = float(values[32]) * jupiter_radius
     name = values[2]
     rb = values[0]
-    output += f"\n{rb},{name},{lan},{aop},{sma},{inc},{ecc},{mass},{rad}"
+    s = "%.2f" % inc
+    output += f"\n{rb},{name},{lan},{aop},{sma},{s},{ecc},{mass},{rad}"
 
     name = values[0]
     if name not in star_names:
         star_names.append(name)
-        if values[43] == "":
+        if values[52] == "":
             continue
         else:
-            lan = float(values[43]) * parsec
-        if values[58] == "":
+            lan = float(values[52]) * parsec
+        if values[64] == "":
             continue
         else:
-            rb = float(values[58])
-        if values[62] == "":
+            rb = float(values[64])
+        if values[73] == "":
             continue
         else:
-            mass = float(values[62]) * solar_mass
-        if values[66] == "":
+            mass = float(values[73]) * solar_mass
+        if values[74] == "":
             continue
         else:
-            radius = float(values[66]) * solar_radius
+            radius = float(values[74]) * solar_radius
         output_s += f"\n{name},{lan},{rb},{mass},{radius}"
 outputf = open("Planets.csv", "w")
 outputf.write(output)

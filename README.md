@@ -27,6 +27,8 @@ Temperature|The star's surface temperature, in Kelvin
 Mass|The star's mass, in kilograms
 Radius|The star's radius, in meters, 1/10th real scale
 
+There's also Planets_All.csv, which is the unfiltered list of all over 4000 exoplanets, including all those with incomplete orbital or physical characteristics. It's structure is identical to Planets.csv.
+
 # Notes
 * Planets.csv only contains planets that have complete orbital information in the archive.
 * The archive data does not contain LAN or AOP for any planet. The values in the Planets.csv table are randomly chosen and only present so that everyone who uses these tables works off of the same numbers.

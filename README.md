@@ -18,6 +18,7 @@ Mass|The planet's mass, in kilograms
 Radius|The planet's radius, in meters, 1/10th real scale
 
 Stars.csv contains the following columns:
+
 Column Name | Description
 ----------- | -----------
 Name|The star's name

@@ -34,6 +34,10 @@ There's also Planets_All.csv, which is the unfiltered list of all over 4000 exop
 * The archive data does not contain LAN or AOP for any planet. The values in the Planets.csv table are randomly chosen and only present so that everyone who uses these tables works off of the same numbers.
 * Note that the star distances in Stars.csv are in 1/100th scale, as opposed to KSP's 1/10th stock scale.
 
+
+
+Also, big thanks to https://github.com/Mrcarrot1 for helping with the python script that made this possible!
+
 # Acknowledgements
 
 This repository makes use of the NASA Exoplanet Archive, which is operated by the California Institute of Technology, under contract with the National Aeronautics and Space Administration under the Exoplanet Exploration Program.

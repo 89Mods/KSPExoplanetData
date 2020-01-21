@@ -19,7 +19,6 @@ from random import randint
 from random import random
 import urllib.request
 
-#https://exoplanetarchive.ipac.caltech.edu/cgi-bin/nstedAPI/nph-nstedAPI?table=exoplanets&format=csv
 def random_float(min, max):
     return random() * (min - max) + max
 
@@ -38,6 +37,7 @@ solar_mass = 1.98847e30
 solar_radius = 6.957e7        #Rs, adjusted for KSP scale
 f = open("Exoplanets.csv", "r")
 output = "Reference Body,Name,LAN,AOP,SMA,Inclination,Eccentricity,Mass,Radius"
+output_a = "Reference Body,Name,LAN,AOP,SMA,Inclination,Eccentricity,Mass,Radius";
 output_s = "Name,Distance,Temperature,Mass,Radius"
 star_names = []
 for line in f.readlines():
@@ -45,6 +45,7 @@ for line in f.readlines():
         continue
     if line.startswith("pl_hostname"):
         continue
+    is_complete = True
     values = line.split(",")
     name = ""
     lan = round(random_float(0, 360), 1)
@@ -56,30 +57,34 @@ for line in f.readlines():
     mass = ""
     rad = ""
     if values[21] == "":
-        continue
+        is_complete = False
     else:
         inc = float(values[21]) - 90
     if values[16] == "":
-        continue
+        is_complete = False
     else:
         ecc = values[16]
     if values[6] == "":
-        continue
+        is_complete = False
     else:
         sma = float(values[6]) * astronomical_unit
     if values[26] == "":
-        continue
+        is_complete = False
     else:
         mass = float(values[26]) * jupiter_mass
     if values[32] == "":
-        continue
+        is_complete = False
     else:
         rad = float(values[32]) * jupiter_radius
     name = values[2]
     rb = values[0]
-    s = "%.2f" % inc
-    output += f"\n{rb},{name},{lan},{aop},{sma},{s},{ecc},{mass},{rad}"
-
+    s = ""
+    if inc != "":
+        s = "%.2f" % inc
+    output_a += f"\n{rb},{name},{lan},{aop},{sma},{s},{ecc},{mass},{rad}"
+    if is_complete:
+        output += f"\n{rb},{name},{lan},{aop},{sma},{s},{ecc},{mass},{rad}"
+    
     name = values[0]
     if name not in star_names:
         star_names.append(name)
@@ -103,6 +108,10 @@ for line in f.readlines():
 outputf = open("Planets.csv", "w")
 outputf.write(output)
 f.close()
+outputf.close()
+
+outputf = open("Planets_All.csv", "w")
+outputf.write(output_a)
 outputf.close()
 
 outputf = open("Stars.csv", "w")

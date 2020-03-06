@@ -17,8 +17,10 @@
 #Radius- 74
 from random import randint
 from random import random
+from random import seed
 import urllib.request
 
+seed(239723535)
 def random_float(min, max):
     return random() * (min - max) + max
 
@@ -33,7 +35,7 @@ astronomical_unit = 1.496e+10 #AU, adjusted for KSP scale
 jupiter_mass = 1.89813e27
 jupiter_radius = 7.1492e6     #Rj, adjusted for KSP scale
 parsec = 3.0857e14            #PC, adjusted for KSP scale
-solar_mass = 1.98847e30
+solar_mass = 1.98847e28       #Ms, adjusted for KSP scale
 solar_radius = 6.957e7        #Rs, adjusted for KSP scale
 f = open("Exoplanets.csv", "r")
 output = "Reference Body,Name,LAN,AOP,SMA,Inclination,Eccentricity,Mass,Radius"

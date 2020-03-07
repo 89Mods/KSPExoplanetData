@@ -32,7 +32,7 @@ f.write(data);
 f.close()
 
 astronomical_unit = 1.496e+10 #AU, adjusted for KSP scale
-jupiter_mass = 1.89813e27
+jupiter_mass = 1.89813e25     #Mj, adjusted for KSP scale
 jupiter_radius = 7.1492e6     #Rj, adjusted for KSP scale
 parsec = 3.0857e14            #PC, adjusted for KSP scale
 solar_mass = 1.98847e28       #Ms, adjusted for KSP scale

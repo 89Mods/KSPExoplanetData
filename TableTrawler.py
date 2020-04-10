@@ -15,6 +15,8 @@
 #Temperature- 64
 #Mass- 73
 #Radius- 74
+#Longitude- 82
+#Latitude- 83
 from random import randint
 from random import random
 from random import seed
@@ -25,7 +27,7 @@ def random_float(min, max):
     return random() * (min - max) + max
 
 #Download the data first
-response = urllib.request.urlopen('https://exoplanetarchive.ipac.caltech.edu/cgi-bin/nstedAPI/nph-nstedAPI?table=exoplanets&format=csv')
+response = urllib.request.urlopen('https://exoplanetarchive.ipac.caltech.edu/cgi-bin/nstedAPI/nph-nstedAPI?table=exoplanets&format=csv&select=pl_hostname,pl_letter,pl_name,pl_discmethod,pl_controvflag,pl_pnum,pl_orbper,pl_orbpererr1,pl_orbpererr2,pl_orbperlim,pl_orbpern,pl_orbsmax,pl_orbsmaxerr1,pl_orbsmaxerr2,pl_orbsmaxlim,pl_orbsmaxn,pl_orbeccen,pl_orbeccenerr1,pl_orbeccenerr2,pl_orbeccenlim,pl_orbeccenn,pl_orbincl,pl_orbinclerr1,pl_orbinclerr2,pl_orbincllim,pl_orbincln,pl_bmassj,pl_bmassjerr1,pl_bmassjerr2,pl_bmassjlim,pl_bmassn,pl_bmassprov,pl_radj,pl_radjerr1,pl_radjerr2,pl_radjlim,pl_radn,pl_dens,pl_denserr1,pl_denserr2,pl_denslim,pl_densn,pl_ttvflag,pl_kepflag,pl_k2flag,ra_str,dec_str,ra,st_raerr,dec,st_decerr,st_posn,st_dist,st_disterr1,st_disterr2,st_distlim,st_distn,st_optmag,st_optmagerr,st_optmaglim,st_optband,gaia_gmag,gaia_gmagerr,gaia_gmaglim,st_teff,st_tefferr1,st_tefferr2,st_tefflim,st_teffn,st_mass,st_masserr1,st_masserr2,st_masslim,st_massn,st_rad,st_raderr1,st_raderr2,st_radlim,st_radn,pl_nnotes,rowupdate,pl_facility,st_elon,st_elat')
 data = response.read()
 f = open("Exoplanets.csv", "wb")
 f.write(data);
@@ -40,7 +42,7 @@ solar_radius = 6.957e7        #Rs, adjusted for KSP scale
 f = open("Exoplanets.csv", "r")
 output = "Reference Body,Name,LAN,AOP,SMA,Inclination,Eccentricity,Mass,Radius"
 output_a = "Reference Body,Name,LAN,AOP,SMA,Inclination,Eccentricity,Mass,Radius";
-output_s = "Name,Distance,Temperature,Mass,Radius"
+output_s = "Name,Distance,Temperature,Mass,Radius,Ecliptic Longitude,Ecliptic Latitude"
 star_names = []
 for line in f.readlines():
     if line.startswith("#"):
@@ -58,6 +60,8 @@ for line in f.readlines():
     ecc = ""
     mass = ""
     rad = ""
+    longitude = 0
+    latitude = 0
     if values[21] == "":
         is_complete = False
     else:
@@ -106,7 +110,9 @@ for line in f.readlines():
             continue
         else:
             radius = float(values[74]) * solar_radius
-        output_s += f"\n{name},{lan},{rb},{mass},{radius}"
+        longitude = float(values[82])
+        latitude = float(values[83])
+        output_s += f"\n{name},{lan},{rb},{mass},{radius},{longitude},{latitude}"
 outputf = open("Planets.csv", "w")
 outputf.write(output)
 f.close()

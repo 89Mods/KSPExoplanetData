@@ -1,7 +1,7 @@
 #Planet Data:
 #Inclination- 21
 #Eccentricity- 16
-#SMA- 6
+#SMA- 11
 #LAN- None
 #AOP- None
 #ReferenceBody- 0
@@ -33,7 +33,7 @@ f = open("Exoplanets.csv", "wb")
 f.write(data);
 f.close()
 
-astronomical_unit = 1.496e+10 #AU, adjusted for KSP scale
+astronomical_unit = 14959787070.0 #AU, adjusted for KSP scale
 jupiter_mass = 1.89813e25     #Mj, adjusted for KSP scale
 jupiter_radius = 7.1492e6     #Rj, adjusted for KSP scale
 parsec = 3.0857e14            #PC, adjusted for KSP scale
@@ -70,10 +70,10 @@ for line in f.readlines():
         is_complete = False
     else:
         ecc = values[16]
-    if values[6] == "":
+    if values[11] == "":
         is_complete = False
     else:
-        sma = float(values[6]) * astronomical_unit
+        sma = float(values[11]) * astronomical_unit
     if values[26] == "":
         is_complete = False
     else:

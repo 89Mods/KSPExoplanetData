@@ -13,7 +13,7 @@
 #Name- 0
 #Distance- 52
 #Temperature- 64
-#Mass- 73
+#Mass- 69
 #Radius- 74
 #Longitude- 82
 #Latitude- 83
@@ -102,10 +102,10 @@ for line in f.readlines():
             continue
         else:
             rb = float(values[64])
-        if values[73] == "":
+        if values[69] == "":
             continue
         else:
-            mass = float(values[73]) * solar_mass
+            mass = float(values[69]) * solar_mass
         if values[74] == "":
             continue
         else:
